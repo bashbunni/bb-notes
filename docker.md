@@ -81,7 +81,8 @@ also, this requires you to have a Dockerfile in your frontend and backend folder
 ## Questions
 
 - if I'm in a github repo that uses docker, am I pulling the docker image from the repo?
-  -> Look at docker files...
+  -> Look at [docker files](https://docs.docker.com/engine/reference/commandline/build/)...
+  - Typically, you would download the Dockerfile, then run `docker build <dockerfile path or url>` in the target directory (e.g. frontend) to build an image from the Dockerfile. From there you could do `docker run -p <host_port>:<container_port> <image_name/image_id>` or
 - if I'm running a docker container with an Ubuntu image on a Windows machine, what do commands look like? What's supported????
 
 ```
@@ -94,18 +95,22 @@ docker inspect quay.io/authzed/spicedb
 
 - in the first line of dockerfile, where can I find what I should put `FROM node:alpine3.11`
 
-  - you can do `FROM node:latest`, you basically just want to use the latest docker image for the tools you need so you don't have to start from scratch
+  - You can do `FROM node:latest` for a frontend/backend that uses node. You basically just want to use the latest docker image for the tools you need so you don't have to start from scratch
 
 - what is "/app" directory for a Dockerfile?
 
   - `WORKDIR /myapp` is where your docker config files will live in the container. Using this replaces the need to use `RUN mkdir /app`. Your docker build command
   - [source](https://nickjanetakis.com/blog/docker-tip-46-using-workdir-to-cleanup-your-dockerfile)
 
-- do you need to delete a docker container if you make changes to the dockerfile?
+- Do you need to delete a docker container if you make changes to the dockerfile?
 
   - I think so because it would be built off of the previous version of the dockerfile
+  - Yes, you'll want to remove the containers and images when changes to directory's Dockerfile are made. Which is why there are commands to run, then clean up the containers automagically.
 
 - why do I need to `COPY package*.json ./` AND `COPY . .` wouldn't the latter copy the package.json files anyway?
-  [dockerize mern stack application](https://suraj-patel.medium.com/dockerize-mern-stack-application-9ea8de68ea4e)
+  [dockerize mern stack application - this is very helpful!](https://suraj-patel.medium.com/dockerize-mern-stack-application-9ea8de68ea4e)
+
+  - from what I've seen, it does copy the package\*.json files when you do `COPY . .`
 
 - how do you create a successful request to a containerized backend?
+  - be sure to map the ports in your `docker-compose.yml`, then you can access it normally.
