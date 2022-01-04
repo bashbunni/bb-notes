@@ -33,3 +33,21 @@ The Go blog recommends the following:
 
 [package names - go blog](https://go.dev/blog/package-names)
 [organizing go code - go blog](https://go.dev/blog/organizing-go-code)
+
+## Just Go Things
+
+### []Struct != []Interface
+
+You can have a slice of structs that implement a given interface, but that slice of structs != slice of interface.
+You have to do a type conversion for all values in the list to convert them to an interface.
+i.e.
+
+```go
+func structToInterface(structs []mystruct) []myinterface {
+    interfaces := make([]myinterface, len(structs))
+    for i, struct := range structs {
+        interfaces[i] = myinterface(struct)
+    }
+    return interfaces
+}
+```
