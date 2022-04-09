@@ -51,3 +51,7 @@ func structToInterface(structs []mystruct) []myinterface {
     return interfaces
 }
 ```
+
+## Comparison
+[go-cmp](https://github.com/google/go-cmp) allows you to compare two values and [diff](https://pkg.go.dev/github.com/google/go-cmp/cmp#Diff) them
+
