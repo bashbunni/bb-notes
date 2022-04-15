@@ -10,4 +10,12 @@
 5. Worst of all are race conditions which are bugs that only manifest under certain timing conditions. 
     - this would include code that executes in the background and one part of the code finished before another, but only sometimes
 
+## Types of Bugs
+"a Heisenbug is a software bug that seems to disappear or alter its behavior when one attempts to study it"
+"a Schroedinbug is a bug that manifests itself in running software after a programmer notices that the code should never have worked in the first place."
+"a Hindenbug is a bug with catastrophic behavior."
+"a higgs-bugson is a bug that is predicted to exist based upon other observed conditions but is difficult, if not impossible, to artificially reproduce in a development or test environment."
+"a Mandelbug (from Mandelbrot fractals): you discover a bug and while trying to fix it, you uncover 50 other & worse bugs"
+"a Bohrbug: a good, solid piece of bug. Easy to identify, easy to fix, little to no side-effects"
+
 (PS thank you muesli)
